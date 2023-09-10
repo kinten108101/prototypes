@@ -1,0 +1,43 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StvpkPreferencesWindow : Adw.PreferencesWindow {
+  can-navigate-back: true;
+  modal: true;
+
+  
+
+  Adw.PreferencesPage {
+    icon-name: 'applications-science-symbolic';
+    title: _('Advanced');
+
+    Adw.PreferencesGroup {
+      title: _('Experimental');
+
+      Adw.ActionRow {
+        title: _('Run Button Style');
+
+        [suffix]
+        Gtk.DropDown inject_button_styles {
+          valign: center;
+          factory:
+            Gtk.BuilderListItemFactory {
+              template Gtk.ListItem {
+                child:
+                  Gtk.Label {
+                    label: bind template.item as <StringObject>.string;
+                  };
+              }
+            };
+          
+          model:
+
+            Gtk.StringList  {
+              strings ["minimal", "colored"]
+            };
+
+        }
+      }
+    }
+  }
+}
