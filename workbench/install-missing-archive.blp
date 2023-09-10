@@ -1,0 +1,108 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StvpkInstallMissingArchive : Adw.Window {
+  modal: true;
+  default-width: 700;
+
+    Gtk.Overlay {
+      child:
+        Gtk.ScrolledWindow {
+          styles ['headerbar-collision']
+          hscrollbar-policy: never;
+          propagate-natural-height: true;
+          min-content-height: 100;
+          max-content-height: 500;
+          
+          Adw.Clamp {
+            Gtk.Box {
+              orientation: vertical;
+              
+              Gtk.HeaderBar {
+                styles ['invisible']
+              }
+            
+              Gtk.Box {
+                orientation: vertical;
+                spacing: 12;
+              
+                Gtk.Image {
+                  styles ['lozenge', 'blue']
+                  icon-name: 'auth-sim-missing-symbolic';
+                  valign: center;
+                  halign: center;
+                  pixel-size: 24;
+                }
+                
+                Gtk.Label {
+                  styles ['h1']
+                  label: 'Install missing archives';
+                }
+                
+                Adw.PreferencesGroup {
+                  Adw.ActionRow {
+                    [prefix]
+                    Gtk.Grid {
+                      margin-top: 8;
+                      margin-bottom: 8;
+                      
+                      hexpand: true;
+                      column-spacing: 10;
+
+                      Gtk.Box {
+                        hexpand: true;
+                        orientation: vertical;
+                        valign: center;
+
+                        Gtk.Label addon_name {
+                          styles ["title"]
+                          label: '广州增城 （Zengcheng）Lv7.3'; // placeholder
+                          ellipsize: end;
+                          xalign: 0;
+                        }
+
+                        Gtk.Label creator {
+                          styles ["subtitle"]
+                          label: '21lovely'; // placeholder
+                          ellipsize: end;
+                          xalign: 0;
+                        }
+
+                        layout {
+                          row: 0;
+                          column: 1;
+                        }
+                      }
+                    }
+                    
+                    [suffix]
+                    Gtk.Button {
+                      styles ['suggested-action']
+                      
+                      valign: center;
+                      halign: center;
+                      
+                      label: _('Download');
+                    }
+                  }
+                }
+              }
+
+              Gtk.Box {
+                height-request: 32;
+              }
+            }
+          }
+        };
+
+      [overlay]
+      Gtk.HeaderBar {
+        valign: start;
+        styles ['transparent']
+        title-widget:
+          Adw.WindowTitle {};
+      }
+        
+    }
+  
+}
