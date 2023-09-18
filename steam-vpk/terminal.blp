@@ -1,0 +1,19 @@
+using Gtk 4.0;
+
+Gtk.FlowBox {
+  halign: start;
+  valign: start;
+  orientation: horizontal;
+  Gtk.Label {
+    halign: start;
+    styles ['terminal']
+    label: 'Cleaning addons directory\nCould not find directory';
+    wrap: true;
+    wrap-mode: word_char;
+  }
+  Gtk.Label {
+    halign: start;
+    styles ['terminal', 'blink_me']
+    label: '▉';
+  }
+}

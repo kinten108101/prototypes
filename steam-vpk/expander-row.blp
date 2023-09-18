@@ -1,0 +1,150 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ApplicationWindow window {
+  default-width: 864;
+
+  content:
+    Gtk.Box {
+      orientation: vertical;
+
+      Adw.HeaderBar {}
+      Adw.PreferencesPage {
+        Adw.PreferencesGroup {
+          Adw.PreferencesRow {
+            activatable: false;
+            styles ['launchpad-row']
+            child:
+              Gtk.Box {
+                orientation: vertical;
+
+                Gtk.Box {
+                  margin-top: 8;
+                  margin-bottom: 8;
+                  margin-end: 8;
+                  margin-start: 8;
+                  spacing: 8;
+
+                  Gtk.Image {
+                    valign: center;
+                    margin-start: 12;
+                    icon-name: 'list-drag-handle-symbolic';
+                    styles ['dim-label']
+                  }
+
+                  Gtk.Box {
+                    halign: fill;
+                    hexpand: true;
+                    valign: center;
+                    orientation: vertical;
+
+                    Gtk.Label {
+                      halign: start;
+                      label: 'MW2019 Ellis';
+                      ellipsize: end;
+                      styles ['ztitle']
+                    }
+                  }
+
+                  Gtk.Box {
+                    halign: end;
+                    
+                    Gtk.Switch {
+                      valign: center;
+                      margin-end: 12;
+                    }  
+
+                    Gtk.Button {
+                      action-name: 'win.reveal';
+                      valign: center;
+                      label: _('Reveal');
+                    }
+                  }
+                }
+                
+                Gtk.Revealer revealer {
+                  child:
+                    Gtk.Box {
+                      orientation: vertical;
+
+                      Gtk.Grid {
+                        hexpand: true;
+                        column-spacing: 12;
+                        Gtk.Label {
+                          label: _('Description');
+
+                          layout {
+                            row: 0;
+                            column: 0;
+                          }
+                        }
+
+                        Gtk.Label {
+                          label: 'abcd';
+
+                          layout {
+                            row: 0;
+                            column: 1;
+                          } 
+                        }
+                      }
+                    };
+                }
+              };
+          }
+          
+          Adw.PreferencesRow {
+            activatable: false;
+            styles ['launchpad-row']
+            child:
+              Gtk.Box {
+                orientation: vertical;
+
+                Gtk.Box {
+                  margin-top: 8;
+                  margin-bottom: 8;
+                  margin-end: 8;
+                  margin-start: 8;
+                  spacing: 8;
+
+                  Gtk.Image {
+                    valign: center;
+                    margin-start: 12;
+                    icon-name: 'list-drag-handle-symbolic';
+                    styles ['dim-label']
+                  }
+
+                  Gtk.Box {
+                    halign: fill;
+                    hexpand: true;
+                    valign: center;
+                    orientation: vertical;
+
+                    Gtk.Label {
+                      halign: start;
+                      label: 'MW2019 Ellis';
+                      ellipsize: end;
+                      styles ['ztitle']
+                    }
+                  }
+
+                  Gtk.Box {
+                    halign: end;
+                    
+                    Gtk.Switch {
+                      valign: center;
+                      margin-end: 12;
+                    }  
+
+                    Gtk.Button {
+                      valign: center;
+                      label: _('Reveal');
+                    }
+                  }
+                }
+              };
+          }
+        }
+      }
+    };
+}
