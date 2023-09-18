@@ -1,0 +1,9 @@
+.session-button .title {
+  margin-top: -8px;
+}
+
+.session-button .subtitle {
+  font-weight: normal;
+  margin-top: -4px;
+  margin-bottom: -4px;
+}

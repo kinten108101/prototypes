@@ -1,0 +1,121 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.Window window {
+  default-width: 1800;
+  Gtk.Box {
+    orientation: vertical;
+    
+    Adw.HeaderBar {
+      title-widget:
+        Gtk.MenuButton {
+          styles ['flat', 'session-button']
+          
+          Gtk.Box {
+            Gtk.Box {
+              orientation: vertical;
+              
+              Gtk.Label {
+                styles ['title']
+                
+                label: 'mm2.tex';
+              }
+              
+              Gtk.Label {
+                styles ['subtitle']
+                
+                label: '~/Documents';
+              }
+            }
+            
+            Gtk.Image {
+              icon-name: 'pan-down';
+            }
+          }
+          
+          popover:
+            Gtk.PopoverMenu {};
+        };
+        
+      [start]
+      Gtk.Box {
+        styles ['linked']
+        Gtk.ToggleButton document_structure_toggle {
+          icon-name: 'explore-symbolic';
+        }
+        Gtk.ToggleButton symbols_toggle {
+          icon-name: 'shapes-symbolic';
+        }
+      }
+      
+      [start]
+      Gtk.Button {
+        styles ['flat']
+        
+        Gtk.Box {
+          spacing: 6;
+          Gtk.Label {
+            label: _('Open');
+          }
+          Gtk.Image {
+            icon-name: 'pan-down-symbolic';
+          }
+        }
+      }
+      
+      [start]
+      Gtk.Button {
+        styles ['flat']
+        
+        Gtk.Box {
+          spacing: 6;
+          Gtk.Image {
+            icon-name: 'document-new-symbolic';
+          }
+          Gtk.Image {
+            icon-name: 'pan-down-symbolic';
+          }
+        }
+      }
+        
+      [end]
+      Gtk.MenuButton {
+        icon-name: 'open-menu-symbolic';
+        popover:
+          Gtk.PopoverMenu {};
+      }
+      
+      [end]
+      Gtk.Button {
+        label: _('Save');
+      }
+      
+      [end]
+      Gtk.Box {
+        styles ['linked']
+        Gtk.ToggleButton button_help {
+          icon-name: 'rescue-symbolic';
+        }
+        Gtk.ToggleButton button_preview {
+          icon-name: 'view-paged-symbolic';
+        }
+      }
+      
+      [end]
+      Gtk.Button {
+        styles ['flat']
+        icon-name: 'build-symbolic';
+      }
+      
+      
+    }
+    
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        Adw.ActionRow {
+          title: 'Placeholder';
+        }
+      }
+    }
+  }
+}
