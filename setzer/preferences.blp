@@ -1,0 +1,71 @@
+	using Gtk 4.0;
+using Adw 1;
+
+Adw.PreferencesWindow window {
+  Adw.PreferencesPage {
+    icon-name: "build-symbolic";
+    title: _("Proto");
+    
+    Adw.PreferencesGroup {
+      Adw.ComboRow {
+        title: _('LaTeX Interpreter');
+        
+        model: Gtk.StringList options_latex_interpreter {};
+      }
+    }
+    
+    Adw.PreferencesGroup {
+      title: _('Options');
+      
+      Adw.ActionRow {
+        title: _("Post-build Clean-up");
+        subtitle: _("Automatically remove helper files (.log, .dvi, …) after building .pdf.");
+      
+        [suffix]
+        Gtk.Switch {
+          valign: center;
+        }
+      }
+      
+      Adw.ActionRow {
+        title: _("Use Latexmk");
+      
+        [suffix]
+        Gtk.Switch {
+          valign: center;
+
+        }
+      }
+    }
+    
+    Adw.PreferencesGroup {
+      Adw.ComboRow {
+        title: _('Show Build Log');
+        
+        model:
+          Gtk.StringList {
+            strings ["Errors", "Errors and Warnings", "All"]
+          };
+      }
+      
+      Adw.ComboRow {
+        title: _('Embedded System Commands');
+        subtitle: _('Enable this only if you have to. It can cause security problems when building files from untrusted sources.');
+        
+        model:
+          Gtk.StringList {
+            strings ["Disable", "Enable Restricted", "Enable Full"]
+          };
+      }
+    }
+      
+
+  }
+  
+  Adw.PreferencesPage {
+    icon-name: "applications-system-symbolic";
+    title: _("General 2");
+  }
+  
+}
+
