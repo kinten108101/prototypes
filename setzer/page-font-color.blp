@@ -4,10 +4,9 @@ using Adw 1;
 Adw.PreferencesWindow window {
   Adw.PreferencesPage {
     icon-name: "build-symbolic";
-    title: _("Proto");
+    title: _("Font & Colors");
     
     Adw.PreferencesGroup {
-    
       Adw.ExpanderRow expander {
         title: _("Custom Font");
         
@@ -19,13 +18,18 @@ Adw.PreferencesWindow window {
         Adw.ActionRow {
           title: _("Font");
           subtitle: _("The font used within the source code editor");
-          activatable-widget: bb;
-          
-          Gtk.Button bb {
+          activatable-widget: font_button;
+
+          Gtk.Button font_button {
             valign: center;
-          
+            
             styles ['flat']
-            label: 'Monospace 10';
+              
+            Gtk.Label font_button_label {
+              label: 'sdf';
+              ellipsize: middle;
+              width-request: 120; // issue: row subtitle pushes this button ignoring width request
+            }
           }
         }
       }
