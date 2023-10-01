@@ -1,0 +1,50 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.PreferencesWindow window {
+  Adw.PreferencesPage {
+    icon-name: "build-symbolic";
+    title: _("Proto");
+    
+    Adw.PreferencesGroup {
+    
+      Adw.ExpanderRow expander {
+        title: _("Custom Font");
+        
+        [action]
+        Gtk.Switch sw {
+          valign: center;
+        }
+        
+        Adw.ActionRow {
+          title: _("Font");
+          subtitle: _("The font used within the source code editor");
+          activatable-widget: bb;
+          
+          Gtk.Button bb {
+            valign: center;
+          
+            styles ['flat']
+            label: 'Monospace 10';
+          }
+        }
+      }
+      
+    }
+
+  }
+  
+  Adw.PreferencesPage {
+    icon-name: "applications-system-symbolic";
+    title: _("General 2");
+  }
+  
+  Gtk.ShortcutController {
+    scope: local;
+
+    Gtk.Shortcut {
+      trigger: '<Primary>j';
+      action: 'action(test.print-stdout)';
+    }
+  }
+}
