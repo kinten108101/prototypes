@@ -42,13 +42,4 @@ Adw.PreferencesWindow window {
     icon-name: "applications-system-symbolic";
     title: _("General 2");
   }
-  
-  Gtk.ShortcutController {
-    scope: local;
-
-    Gtk.Shortcut {
-      trigger: '<Primary>j';
-      action: 'action(test.print-stdout)';
-    }
-  }
 }
