@@ -1,0 +1,20 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.PreferencesWindow window {
+  Adw.PreferencesPage {
+    icon-name: "build-symbolic";
+    title: _("Proto");
+    
+    Adw.PreferencesGroup {
+      Adw.PreferencesRow bin {
+        height-request: 240;
+      }
+    }
+  }
+  
+  Adw.PreferencesPage {
+    icon-name: "applications-system-symbolic";
+    title: _("General 2");
+  }
+}
