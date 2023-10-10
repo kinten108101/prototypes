@@ -1,0 +1,36 @@
+/* popover */
+contents {
+  padding: 0;
+  margin: 0;
+}
+
+listview {
+  margin-top: 0px;
+}
+
+.navigation-sidebar row {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 8px 8px 8px 16px;
+}
+
+.navigation-sidebar row:active {
+  background-color: alpha(currentColor, 0.1);
+}
+
+.file_name {
+  font-size: medium;
+}
+
+.file_path {
+  font-size: small;
+}
+
+.empty_page_content {
+  margin: 16px;
+}
+
+.noresult_content {
+  margin: 16px;
+}
+
