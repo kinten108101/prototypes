@@ -342,3 +342,29 @@ popover.connect("notify::visible", (obj) => {
 
 new DocumentChooserPresenter(workspace);
 
+const application = workbench.application;
+
+const add_item = new Gio.SimpleAction({
+  name: 'add-item',
+});
+add_item.connect('activate', () => {
+  workspace.recently_opened_documents.append(
+    new DocumentEntry(Gio.File.new_for_path("wow.mpv")),
+  );  
+});
+application.add_action(add_item);
+application.set_accels_for_action('app.add-item', ['<Primary>j']);
+
+const remove_item = new Gio.SimpleAction({
+  name: 'remove-item',
+});
+remove_item.connect('activate', () => {
+  workspace.recently_opened_documents.remove(
+    workspace.recently_opened_documents.get_n_items() - 1,
+  ); 
+});
+application.add_action(remove_item);
+application.set_accels_for_action('app.remove-item', ['<Primary>k']);
+
+
+
