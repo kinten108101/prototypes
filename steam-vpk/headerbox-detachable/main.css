@@ -1,0 +1,60 @@
+@define-color metalcard #d8d8d8;
+@define-color metalcard-dark #4a4a4a;
+
+.headerbox-card {
+  background-color: @metalcard;
+  box-shadow: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 12px;
+}
+
+.status-box {
+}
+
+.status-box label.title {
+  padding-left: 0;
+  font-weight: bolder;
+}
+
+.status-box label.description {
+  font-weight: bold;
+  font-size: small;
+  line-height: 1.3em;
+}
+
+.status-box.red label.title {
+  color: @red_5;
+}
+
+.status-box.red label.description {
+  color: mix(@red_5, @dark_1, 0.3);
+}
+
+.status-box scrolledwindow {
+  padding: 0px;
+}
+
+.metal-fade-right undershoot.right {
+  background: linear-gradient(
+    to right,
+    alpha(@metalcard, 0) 0%,
+    alpha(@metalcard, 1) 100%
+  );
+}
+
+.metal-fade-top undershoot.top {
+  background: linear-gradient(
+    to top,
+    alpha(@metalcard, 0) 0%,
+    alpha(@metalcard, 0) 50%,
+    alpha(@metalcard, 1) 100%
+  );
+}
+
+scrolledwindow.noscrollbar scrollbar {
+  opacity: 0;
+}
+
