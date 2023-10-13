@@ -189,10 +189,10 @@ class DocumentChooser extends Gtk.Popover {
   constructor(params = {}) {
     super(params);
     this.pages = new Map;
+    this.add_css_class('documentchooser');
 
     const vbox = new Gtk.Box();
     vbox.set_orientation(Gtk.Orientation.VERTICAL);
-    vbox.add_css_class("document_chooser");
     {
       const vvbox = new Gtk.Box();
       vvbox.set_orientation(Gtk.Orientation.VERTICAL);

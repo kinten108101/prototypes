@@ -1,36 +1,40 @@
 /* popover */
-contents {
+.documentchooser contents {
   padding: 0;
   margin: 0;
 }
 
-listview {
+.documentchooser listview {
   margin-top: 0px;
 }
 
-.navigation-sidebar row {
+.documentchooser .navigation-sidebar row {
   margin-left: 0;
   margin-right: 0;
-  padding: 8px 8px 8px 16px;
+  padding: 4px 8px 4px 16px;
 }
 
-.navigation-sidebar row:active {
-  background-color: alpha(currentColor, 0.1);
+.documentchooser .navigation-sidebar row:not(:first-child) {
+  margin-top: 4px;
 }
 
-.file_name {
+.documentchooser .navigation-sidebar row:active {
+  background-color: alpha(currentColor, 0.05);
+}
+
+.documentchooser .file_name {
   font-size: medium;
 }
 
-.file_path {
+.documentchooser .file_path {
   font-size: small;
 }
 
-.empty_page_content {
+.documentchooser .empty_page_content {
   margin: 16px;
 }
 
-.noresult_content {
+.documentchooser .noresult_content {
   margin: 16px;
 }
 
