@@ -210,6 +210,7 @@ class DocumentChooser extends Gtk.Popover {
 
       this.other_documents_button = new Gtk.Button();
       this.other_documents_button.set_icon_name("document-open-symbolic");
+      this.other_documents_button.set_action_name("app.open-document-dialog");
       // NOTE(kinten): This is sucks
       this.other_documents_button.connect("clicked", () => {
         this.set_visible(false);
@@ -360,5 +361,14 @@ remove_item.connect('activate', () => {
 application.add_action(remove_item);
 application.set_accels_for_action('app.remove-item', ['<Primary>k']);
 
+Gio._promisify(Gtk.FileDialog.prototype, "open", "open_finish");
 
+const open_document_dialog = new Gio.SimpleAction({
+  name: "open-document-dialog",
+});
+open_document_dialog.connect("activate", () => {
+  const dialog = new Gtk.FileDialog();
+  dialog.open(null, null).catch(logError);
+});
+application.add_action(open_document_dialog);
 
