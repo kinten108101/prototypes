@@ -135,8 +135,12 @@ class DocumentRow extends Gtk.Box {
 
   constructor(params = {}) {
     super(params);
+    this.set_halign(Gtk.Align.FILL);
+    this.set_hexpand(true);
     this.set_spacing(8);
     const vbox_left = new Gtk.Box();
+    vbox_left.set_halign(Gtk.Align.FILL);
+    vbox_left.set_hexpand(true);
     vbox_left.set_orientation(Gtk.Orientation.VERTICAL);
 
     this.file_name = new Gtk.Label();
