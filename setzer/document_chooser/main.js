@@ -84,7 +84,7 @@ class DocumentChooserPresenter extends GObject.Object {
       null,
     );
     this.on_recently_opened_documents_changed(
-      this.workspace.recently_opened_documents
+      this.workspace.recently_opened_documents,
     );
     this.workspace.recently_opened_documents.connect(
       "notify::n-items",
@@ -103,17 +103,18 @@ class DocumentChooserPresenter extends GObject.Object {
       model: this.workspace.recently_opened_documents,
       filter: this.filter,
     });
-    this.on_filtered_recent_list_changed(
-      model
+    this.on_filtered_recent_list_changed(model);
+    model.connect(
+      "notify::n-items",
+      this.on_filtered_recent_list_changed.bind(this),
     );
-    model.connect("notify::n-items", this.on_filtered_recent_list_changed.bind(this));
     this.view.list.set_model(new Gtk.NoSelection({ model }));
   }
 
   on_recently_opened_documents_changed(obj) {
     const n = obj.get_n_items();
     if (n <= 0) {
-      this.view.set_visible_child_name('empty');
+      this.view.set_visible_child_name("empty");
     }
   }
 
@@ -192,7 +193,7 @@ class DocumentChooser extends Gtk.Popover {
 
   constructor(params = {}) {
     super(params);
-    this.pages = new Map;
+    this.pages = new Map();
     this.add_css_class('documentchooser');
     this.set_size_request(400, -1);
 
@@ -345,26 +346,26 @@ new DocumentChooserPresenter(workspace);
 const application = workbench.application;
 
 const add_item = new Gio.SimpleAction({
-  name: 'add-item',
+  name: "add-item",
 });
-add_item.connect('activate', () => {
+add_item.connect("activate", () => {
   workspace.recently_opened_documents.append(
     new DocumentEntry(Gio.File.new_for_path("wow.mpv")),
-  );  
+  );
 });
 application.add_action(add_item);
-application.set_accels_for_action('app.add-item', ['<Primary>j']);
+application.set_accels_for_action("app.add-item", ["<Primary>j"]);
 
 const remove_item = new Gio.SimpleAction({
-  name: 'remove-item',
+  name: "remove-item",
 });
-remove_item.connect('activate', () => {
+remove_item.connect("activate", () => {
   workspace.recently_opened_documents.remove(
     workspace.recently_opened_documents.get_n_items() - 1,
-  ); 
+  );
 });
 application.add_action(remove_item);
-application.set_accels_for_action('app.remove-item', ['<Primary>k']);
+application.set_accels_for_action("app.remove-item", ["<Primary>k"]);
 
 Gio._promisify(Gtk.FileDialog.prototype, "open", "open_finish");
 
