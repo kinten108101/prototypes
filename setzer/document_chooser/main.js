@@ -210,6 +210,10 @@ class DocumentChooser extends Gtk.Popover {
 
       this.other_documents_button = new Gtk.Button();
       this.other_documents_button.set_icon_name("document-open-symbolic");
+      // NOTE(kinten): This is sucks
+      this.other_documents_button.connect("clicked", () => {
+        this.set_visible(false);
+      });
       tophbox.append(this.other_documents_button);
 
       vvbox.append(tophbox);
