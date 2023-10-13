@@ -327,18 +327,8 @@ workspace.init();
 const button = workbench.builder.get_object("button");
 
 const popover = new DocumentChooser();
-popover.set_parent(button);
 
-button.connect("notify::active", (obj) => {
-  if (obj.get_active()) {
-    popover.set_visible(true);
-  }
-});
-popover.connect("notify::visible", (obj) => {
-  if (!obj.get_visible()) {
-    button.set_active(false);
-  }
-});
+button.set_popover(popover);
 
 new DocumentChooserPresenter(workspace);
 
