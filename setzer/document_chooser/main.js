@@ -27,7 +27,7 @@ class Workspace extends GObject.Object {
       new DocumentEntry(Gio.File.new_for_path("wow.mpv")),
     );
     this.recently_opened_documents.append(
-      new DocumentEntry(Gio.File.new_for_path("hello-world.txt")),
+      new DocumentEntry(Gio.File.new_for_path("one/two/three/four/five/hello-world.txt")),
     );
     /*
     this.recently_opened_documents.remove(
