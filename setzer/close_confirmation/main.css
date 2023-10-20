@@ -1,0 +1,11 @@
+.my-dialog .message-area {
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.my-dialog .message-area > label {
+  margin-left: 32px;
+  margin-right: 32px;
+}
+
