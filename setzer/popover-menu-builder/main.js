@@ -5,22 +5,25 @@ import Gio from "gi://Gio";
 
 class ApplicationV2 extends GObject.Object {
   static {
-    GObject.registerClass({
-      GTypeName: 'ApplicationV2',
-      Signals: {
-        'accel-changed': {
-          param_types: [{}],
-          flags: GObject.SignalFlags.DETAILED,
+    GObject.registerClass(
+      {
+        GTypeName: "ApplicationV2",
+        Signals: {
+          "accel-changed": {
+            param_types: [{}],
+            flags: GObject.SignalFlags.DETAILED,
+          },
         },
       },
-    }, this);
+      this,
+    );
   }
 
   static _instance;
 
   static get_instance() {
     if (!this._instance) {
-      this._instance = new ApplicationV2;
+      this._instance = new ApplicationV2();
     }
     return this._instance;
   }
@@ -35,7 +38,7 @@ class ApplicationV2 extends GObject.Object {
 
   static set_accels_for_action(application, detailed_action_name, accels) {
     application.set_accels_for_action(detailed_action_name, accels);
-    this.get_instance().emit('accel-changed::' + detailed_action_name, accels);
+    this.get_instance().emit("accel-changed::" + detailed_action_name, accels);
   }
 }
 
@@ -52,27 +55,27 @@ class MenuItemTest extends Gio.MenuItem {
 
   set_detailed_action(name) {
     super.set_detailed_action(name);
-    if ('reload' in this) {
+    if ("reload" in this) {
       this.reload();
-      ApplicationV2.connect('accel-changed::'+name, () => {
-        console.log('ok');
+      ApplicationV2.connect("accel-changed::" + name, () => {
+        console.log("ok");
         this.reload();
       });
     }
   }
 
   connect(signal, callback) {
-    if (signal === 'clicked') {
-      const name = 'menu.'+String(generate_id());
-      console.log(MenuItemTest.name + '::connect::clicked', name)
+    if (signal === "clicked") {
+      const name = "menu." + String(generate_id());
+      console.log(MenuItemTest.name + "::connect::clicked", name);
       const action = new Gio.SimpleAction({
         name,
       });
-      action.connect('activate', () => {
+      action.connect("activate", () => {
         callback(this);
       });
       group.add_action(action);
-      const detailed_name = 'test.' + name;
+      const detailed_name = "test." + name;
       this.set_detailed_action(detailed_name);
     }
   }
@@ -85,7 +88,7 @@ class MenuTest extends Gio.Menu {
 
   constructor() {
     super({});
-    this.item_map = new WeakMap;
+    this.item_map = new WeakMap();
     this.count = 0;
   }
 
@@ -231,16 +234,19 @@ MenuBuilderV2.add_custom_widget(popover, button_run, "secondary");
 const group = new Gio.SimpleActionGroup();
 
 const close = new Gio.SimpleAction({
-  name: 'close',
+  name: "close",
 });
-close.connect('activate', () => {
-  console.log('hi');
+close.connect("activate", () => {
+  console.log("hi");
 });
 group.add_action(close);
 
-workbench.builder.get_object("window").insert_action_group('test', group);
+workbench.builder.get_object("window").insert_action_group("test", group);
 
-button_two.connect('clicked', () => {
-  console.log('clicked');
+button_two.connect("clicked", () => {
+  console.log("clicked");
 });
-ApplicationV2.set_accels_for_action(workbench.application, 'test.menu.1', ['<Ctrl>j']);
+ApplicationV2.set_accels_for_action(workbench.application, "test.menu.1", [
+  "<Ctrl>j",
+]);
+
