@@ -1,0 +1,6 @@
+{
+  "category": "uncategorized",
+  "description": "Button with badge.",
+  "panels": ["ui", "preview"],
+  "autorun": false
+}

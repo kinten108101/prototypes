@@ -1,0 +1,29 @@
+using Gtk 4.0;
+
+Gtk.Box {
+  valign: center;
+  halign: center;
+  
+  Gtk.Overlay {
+    child:
+      Gtk.Button {
+        styles ['flat']
+        
+        Gtk.Image {
+          icon-name: 'pip-in-symbolic';
+          icon-size: large;
+        }
+      };
+      
+    [overlay]
+    Gtk.Box {
+      valign: start;
+      halign: end;
+      Gtk.Label {
+        label: ' 2 ';
+        
+        styles ['badge']
+      }
+    }
+  }
+}

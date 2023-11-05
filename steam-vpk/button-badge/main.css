@@ -1,0 +1,8 @@
+.badge {
+  margin-top: -8px;
+  margin-right: -8px;
+  font-size: x-small;
+  font-weight: bolder;
+  background-color: @blue_3;
+  border-radius: 99em;
+}
