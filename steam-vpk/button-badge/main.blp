@@ -1,29 +1,50 @@
 using Gtk 4.0;
 
-Gtk.Box {
+Gtk.Box box {
   valign: center;
   halign: center;
+  spacing: 8;
   
-  Gtk.Overlay {
-    child:
-      Gtk.Button {
-        styles ['flat']
-        
+  Gtk.Button {
+    styles ['flat']
+    
+    Gtk.Image {
+      icon-name: 'camera-focus-symbolic';
+      icon-size: large;
+    }
+  }
+  
+  Gtk.Button {
+    styles ['flat']
+    
+    Gtk.Overlay {
+      child:  
         Gtk.Image {
           icon-name: 'pip-in-symbolic';
           icon-size: large;
-        }
-      };
-      
-    [overlay]
-    Gtk.Box {
-      valign: start;
-      halign: end;
-      Gtk.Label {
-        label: ' 2 ';
+        };
         
-        styles ['badge']
+      [overlay]
+      Gtk.Box {
+        valign: start;
+        halign: end;
+        Gtk.Label {
+          label: '2';
+          
+          styles ['badge']
+        }
       }
     }
   }
+  
+  Gtk.Button {
+    styles ['flat']
+    
+    Gtk.Image {
+      icon-name: 'call-outgoing-symbolic';
+      icon-size: large;
+    }
+  }
 }
+
+
