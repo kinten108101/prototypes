@@ -1,0 +1,6 @@
+{
+  "category": "steam-vpk",
+  "description": "A page showing descriptive, vanity details of an add-on.",
+  "panels": ["ui", "preview"],
+  "autorun": false
+}
