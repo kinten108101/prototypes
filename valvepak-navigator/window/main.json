@@ -1,0 +1,6 @@
+{
+  "category": "valvepak-navigator",
+  "description": "Main window for ValvePak Navigator.",
+  "panels": ["ui", "preview"],
+  "autorun": false
+}

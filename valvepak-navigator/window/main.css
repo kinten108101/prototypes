@@ -1,0 +1,24 @@
+.lol {
+  background-color: @card_bg_color;
+  border-radius: 6px;
+}
+.bar-content {
+  padding: 4px;
+}
+.thin-button {
+}
+.thin-button:not(:hover) {
+  color: alpha(#000000, 0);
+}
+.label {
+  margin-top: -12px;
+  margin-bottom: -12px;
+}
+.thin-button:not(:hover) .label {
+  color: alpha(@card_fg_color, 0.5);
+}
+
+.status-bar {
+  background-color: @headerbar_bg_color;
+}
+

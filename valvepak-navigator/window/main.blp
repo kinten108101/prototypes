@@ -1,0 +1,90 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.Window {
+  default-width: 400;
+  default-height: 400;
+
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      title-widget: Gtk.Box {
+        styles [
+          'lol'
+        ]
+
+        Gtk.ScrolledWindow {
+          vscrollbar-policy: never;
+          hscrollbar-policy: external;
+          hexpand: true;
+
+          Gtk.Box {
+            styles [
+              'bar-content'
+            ]
+
+            spacing: 4;
+
+            Gtk.Button {
+              styles [
+                'thin-button'
+              ]
+
+              Gtk.Box {
+                spacing: 6;
+
+                Gtk.Image {
+                  styles [
+                    'label'
+                  ]
+
+                  icon-name: 'package-x-generic-symbolic';
+                }
+
+                Gtk.Label {
+                  styles [
+                    'label'
+                  ]
+
+                  label: 'Root';
+                }
+              }
+            }
+
+            Gtk.Label {
+              label: '/';
+
+              styles [
+                'dim-label'
+              ]
+            }
+
+            Gtk.Button {
+              styles [
+                'thin-button'
+              ]
+
+              Gtk.Label {
+                styles [
+                  'label'
+                ]
+
+                label: 'materials';
+              }
+            }
+          }
+        }
+      };
+    }
+
+    content: Gtk.Box {
+      orientation: vertical;
+
+      Gtk.Box {
+        valign: fill;
+        vexpand: true;
+      }
+    };
+  }
+}
+
