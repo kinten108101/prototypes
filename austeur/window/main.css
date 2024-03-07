@@ -1,0 +1,67 @@
+@define-color accent_color #bd242c;
+@define-color outlined_button_outline_color #e9e8e6;
+
+.thin-button {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+button.outlined {
+  border: solid @outlined_button_outline_color 1px;
+}
+
+button.outlined:not(:hover) {
+  background: transparent;
+}
+
+button.outlined image {
+}
+
+menubutton.primary.flat image,
+button.primary.flat label,
+button.primary.flat image,
+button.primary.outlined label,
+button.primary.outlined image {
+  color: @accent_color;
+}
+
+.section-list label {
+}
+
+.section-list label#Intro {
+}
+
+popover.menu stack > box > box > box:last-child modelbutton label {
+  color: @destructive_color;
+}
+
+popover.menu stack > box > box > box:last-child modelbutton accelerator {
+  color: mix(@destructive_color, @light_3, 0.5);
+}
+
+.sidebar-pane .view-switcher button {
+}
+
+.hollow-full {
+  opacity: 0.5;
+  transition-property: opacity;
+  transition-delay: 1s;
+  transition-duration: 300ms;
+}
+
+.hollow-full:hover {
+  opacity: 1;
+  transition-property: opacity;
+  transition-delay: 0s;
+  transition-duration: 500ms;
+}
+
+.stat label {
+  font-weight: normal;
+}
+
+.wide-button {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+

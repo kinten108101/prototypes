@@ -1,0 +1,298 @@
+using Gtk 4.0;
+using Adw 1;
+
+menu primary_menu {
+  section {
+    item {
+      label: _("Statistics");
+    }
+
+    item {
+      label: _("History");
+    }
+  }
+
+  section {
+    item {
+      label: _("Move to Ideas");
+    }
+
+    item {
+      label: _("Export...");
+      action: "app.export-writing";
+    }
+  }
+
+  section {
+    item {
+      label: _("Delete");
+      action: "app.delete-writing";
+    }
+  }
+}
+
+Adw.Window window {
+  title: 'Wordwright';
+  default-width: 800;
+  default-height: 460;
+
+  Adw.NavigationSplitView {
+    sidebar: Adw.NavigationPage {
+      child: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+          title-widget: Gtk.Box {
+            orientation: horizontal;
+
+            styles [
+              "linked",
+            ]
+
+            Gtk.ToggleButton {
+              icon-name: 'text-justify-left-symbolic';
+              tooltip-text: _("Sections");
+              active: true;
+
+              styles [
+                'flat',
+                'wide-button'
+              ]
+            }
+
+            Gtk.ToggleButton {
+              icon-name: 'uppercase-symbolic';
+              tooltip-text: _("Formatting");
+
+              styles [
+                'flat',
+                'wide-button'
+              ]
+            }
+
+            Gtk.ToggleButton {
+              icon-name: 'text-squiggly-symbolic';
+              tooltip-text: _("Spell Check");
+
+              styles [
+                'flat',
+                'wide-button'
+              ]
+            }
+
+            Gtk.ToggleButton {
+              icon-name: 'loupe-symbolic';
+              tooltip-text: _("Find & Replace");
+
+              styles [
+                'flat',
+                'wide-button'
+              ]
+            }
+          };
+
+          [start]
+          Gtk.Button {
+            icon-name: 'grid-filled-symbolic';
+            tooltip-text: 'Home';
+
+            styles [
+              'flat'
+            ]
+          }
+
+          [end]
+          Gtk.MenuButton {
+            icon-name: "view-more-symbolic";
+
+            styles [
+              'flat'
+            ]
+
+            popover: Gtk.PopoverMenu {
+              menu-model: primary_menu;
+            };
+          }
+        }
+
+        content: Gtk.Box {
+          orientation: vertical;
+          valign: fill;
+          vexpand: true;
+
+          Gtk.ListView {
+            valign: fill;
+            vexpand: true;
+
+            styles [
+              'section-list',
+              'navigation-sidebar'
+            ]
+
+            factory: Gtk.BuilderListItemFactory {
+              template Gtk.ListItem {
+                child: Label {
+                  name: bind template.item as <StringObject>.string;
+                  label: bind template.item as <StringObject>.string;
+                  xalign: 0;
+
+                  styles [
+                    'h1'
+                  ]
+                };
+              }
+            };
+
+            model: Gtk.NoSelection {
+              model: Gtk.StringList {
+                strings [
+                  'Intro',
+                  'Chapter 1',
+                  'Chapter 2',
+                ]
+              };
+            };
+          }
+        };
+      };
+    };
+
+    content: Adw.NavigationPage {
+      child: Adw.ToolbarView {
+        [top]
+        Adw.ViewStack content_pane_headerbar_stack {
+          Adw.ViewStackPage {
+            name: 'has-content';
+
+            child: Adw.HeaderBar {
+              title-widget: Adw.WindowTitle {};
+
+              [start]
+              Gtk.Button {
+                visible: false;
+                icon-name: 'leaflet-symbolic';
+                tooltip-text: 'Hide Sidebar';
+
+                styles [
+                  'flat',
+                  'outlined',
+                  'primary'
+                ]
+              }
+
+              [end]
+              Gtk.Button {
+                styles [
+                  'thin-button',
+                  'primary',
+                  'outlined'
+                ]
+
+                Gtk.Box {
+                  orientation: horizontal;
+                  spacing: 4;
+
+                  Gtk.Image {
+                    icon-name: "paper-symbolic";
+                  }
+
+                  Gtk.Label {
+                    label: 'Import';
+                  }
+                }
+              }
+
+              [end]
+              Gtk.Button {
+                styles [
+                  'thin-button',
+                  'primary',
+                  'outlined'
+                ]
+
+                Gtk.Box {
+                  spacing: 4;
+
+                  Gtk.Image {
+                    icon-name: "lightbulb-symbolic";
+                  }
+
+                  Gtk.Label {
+                    label: 'Prompt';
+                  }
+                }
+              }
+            };
+          }
+
+          Adw.ViewStackPage {
+            name: 'empty';
+
+            child: Adw.HeaderBar {
+              title-widget: Adw.WindowTitle {};
+
+              [start]
+              Gtk.Button {
+                visible: false;
+                icon-name: 'leaflet-symbolic';
+                tooltip-text: 'Hide Sidebar';
+
+                styles [
+                  'flat',
+                  'outlined',
+                  'primary'
+                ]
+              }
+
+              [start]
+              Gtk.Button {
+                styles [
+                  'thin-button',
+                  'primary',
+                  'flat',
+                  'hollow-full',
+                  'stat'
+                ]
+
+                Gtk.Box {
+                  spacing: 4;
+
+                  Gtk.Label {
+                    label: '46 Words';
+                  }
+                }
+              }
+
+              [end]
+              Gtk.ToggleButton {
+                styles [
+                  'thin-button',
+                  'primary',
+                  'outlined'
+                ]
+
+                icon-name: 'uppercase-symbolic';
+              }
+
+              [end]
+              Gtk.Button {
+                styles [
+                  'thin-button',
+                  'primary',
+                  'outlined'
+                ]
+
+                icon-name: "lightbulb-symbolic";
+              }
+            };
+          }
+        }
+
+        content: Gtk.Box {
+          hexpand: true;
+          vexpand: true;
+        };
+      };
+    };
+  }
+}
+
