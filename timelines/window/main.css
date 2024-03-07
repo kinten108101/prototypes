@@ -1,0 +1,73 @@
+@define-color metalcard #d8d8d8;
+/* @define-color metalcard #4a4a4a; */
+
+headerbar.adjacent-tab-view {
+  box-shadow: inset 1px 0 @headerbar_shade_color;
+}
+
+#headerbox {
+  background-color: alpha(@metalcard, 0.3);
+  border-radius: 6px;
+}
+
+#headerbox label {
+  font-size: small;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-normal {
+  font-weight: normal;
+}
+
+button.thin,
+headerbar.thin {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.up-sm {
+  margin-top: -6px;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+tabbar {
+  margin-top: -6px;
+}
+
+box.tall-group button {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+box.wide-group button {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+box.navigation-sidebar button label {
+  font-weight: normal;
+}
+
+.bg-headerbar-bg {
+  background-color: @headerbar_bg_color;
+}
+
+.p-\[6px\] {
+  padding: 6px;
+}
+
+.mx-\[6px\] {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.spacing-\[6px\] *:not(:first-child) {
+  margin-top: 6px;
+}
+

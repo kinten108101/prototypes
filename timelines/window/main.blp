@@ -1,0 +1,243 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.Window window {
+  default-width: 1200;
+  default-height: 600;
+
+  Gtk.Box {
+    orientation: vertical;
+
+    Adw.HeaderBar {
+      styles [
+        "thin",
+      ]
+
+      centering-policy: strict;
+
+      [start]
+      Gtk.ToggleButton sidebar_toggle {
+        icon-name: "dock-left-symbolic";
+      }
+
+      [start]
+      Gtk.MenuButton {
+        icon-name: "focus-legacy-systray-symbolic";
+        always-show-arrow: true;
+      }
+
+      title-widget: Gtk.CenterBox {
+        valign: center;
+
+        [start]
+        Gtk.Box {
+          spacing: 6;
+
+          Button {
+            icon-name: "object-rotate-left-symbolic";
+            tooltip-text: _("Fetch all");
+          }
+
+          Button {
+            icon-name: "refresh-large-symbolic";
+            tooltip-text: _("Push all");
+          }
+        }
+
+        [center]
+        Adw.Clamp {
+          margin-start: 6;
+          margin-end: 6;
+          name: "headerbox";
+          maximum-size: 300;
+
+          Gtk.CenterBox {
+            width-request: 300;
+            vexpand: false;
+            shrink-center-last: true;
+
+            [start]
+            Gtk.Button {
+              icon-name: "text-justify-left-symbolic";
+              halign: start;
+
+              styles [
+                "flat",
+                "thin",
+                "dim-label",
+              ]
+            }
+
+            [center]
+            Gtk.Label {
+              label: "timelines*";
+              valign: center;
+
+              styles [
+                "font-bold",
+                "thin"
+              ]
+            }
+
+            [end]
+            Gtk.Button {
+              Gtk.Box {
+                spacing: 6;
+
+                Gtk.Image {
+                  icon-name: "branch-symbolic";
+                }
+
+                Gtk.Label {
+                  label: "main";
+                }
+
+                Gtk.Image {
+                  icon-name: "pan-down-symbolic";
+                }
+              }
+
+              styles [
+                "thin",
+                "font-normal",
+                "flat",
+                "dim-label",
+              ]
+            }
+          }
+        }
+
+        [end]
+        Gtk.Box {
+          halign: start;
+          hexpand: true;
+          spacing: 6;
+
+          Adw.SplitButton {
+            icon-name: "shoe-box-symbolic";
+            tooltip-text: _("Stash");
+          }
+        }
+      };
+
+      [end]
+      Adw.TabButton tab_button {
+        view: tab_view;
+      }
+    }
+
+    Adw.OverlaySplitView {
+      show-sidebar: bind sidebar_toggle.active;
+
+      sidebar: Gtk.Box {
+        orientation: vertical;
+        margin-top: 6;
+        margin-bottom: 6;
+        spacing: 6;
+        // search group
+        Gtk.Box {
+          orientation: vertical;
+
+          styles [
+            "mx-[6px]"
+          ]
+
+          Gtk.SearchEntry {
+            hexpand: true;
+            placeholder-text: _("Filter");
+          }
+        }
+
+        // branch-likes group
+        Gtk.Box {
+          orientation: vertical;
+
+          styles [
+            "mx-[6px]",
+            "spacing-[6px]"
+          ]
+
+          Gtk.Button {
+            Adw.ButtonContent {
+              halign: start;
+              icon-name: "pan-down-symbolic";
+              label: _("Starred");
+
+              styles [
+                "font-normal"
+              ]
+            }
+          }
+
+          Gtk.Button {
+            label: _("Branches");
+          }
+
+          Gtk.Button {
+            label: _("Remotes");
+          }
+        }
+      };
+
+      content: Gtk.Paned {
+        vexpand: true;
+        orientation: vertical;
+        position: 200;
+
+        Adw.TabOverview tab_overview {
+          view: tab_view;
+          show-start-title-buttons: false;
+          show-end-title-buttons: false;
+          enable-search: false;
+
+          child: Adw.TabView tab_view {};
+        }
+
+        Gtk.Box {
+          spacing: 6;
+
+          styles [
+            "p-[6px]"
+          ]
+
+          Gtk.Box {
+            orientation: vertical;
+
+            styles [
+              "linked",
+              "tall-group",
+            ]
+
+            Gtk.ToggleButton {
+              icon-name: "about-symbolic";
+              active: true;
+            }
+
+            Gtk.ToggleButton {
+              icon-name: "edit-undo-symbolic";
+            }
+          }
+
+          Adw.ViewStack lower_view_stack {
+            Adw.ViewStackPage {
+              name: "summary";
+              icon-name: "about-symbolic";
+              title: _("Summary");
+
+              child: Gtk.Box {};
+            }
+
+            Adw.ViewStackPage {
+              name: "changes";
+              icon-name: "edit-undo-symbolic";
+              title: _("Changes");
+
+              child: Gtk.Box {};
+            }
+          }
+        }
+      };
+    }
+  }
+}
+
