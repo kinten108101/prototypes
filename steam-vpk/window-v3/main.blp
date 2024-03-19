@@ -1,0 +1,132 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.Window win {
+  default-width: 400;
+  default-height: 600;
+
+  Gtk.Box {
+    orientation: vertical;
+
+    Adw.HeaderBar {
+      show-title: false;
+
+      [start]
+      Gtk.Button {
+        icon-name: 'plus-large-symbolic';
+      }
+
+      [start]
+      Adw.Clamp {
+        vexpand: false;
+        maximum-size: 200;
+
+        styles [
+          'profile-bar'
+        ]
+
+        Gtk.Box {
+          orientation: vertical;
+
+          Gtk.Box {
+            hexpand: true;
+            halign: fill;
+            width-request: 100;
+
+            Gtk.Button {
+              vexpand: true;
+              halign: start;
+              hexpand: false;
+              tooltip-text: _('Switch Profile');
+
+              styles [
+                'flat',
+                'profile-button'
+              ]
+
+              Gtk.Box {
+                halign: center;
+                orientation: vertical;
+                valign: center;
+
+                Gtk.Image {
+                  icon-name: 'pan-up-symbolic';
+                  pixel-size: 12;
+                }
+
+                Gtk.Image {
+                  icon-name: 'pan-down-symbolic';
+                  pixel-size: 12;
+                }
+              }
+            }
+
+            Gtk.Separator {}
+
+            Gtk.ToggleButton primary_button {
+              vexpand: true;
+              halign: fill;
+              hexpand: true;
+              active: true;
+
+              styles [
+                'flat',
+                'profile-button'
+              ]
+
+              Gtk.Box {
+                halign: fill;
+                spacing: 6;
+
+                Gtk.ScrolledWindow {
+                  hscrollbar-policy: external;
+                  vscrollbar-policy: never;
+                  hexpand: true;
+
+                  Gtk.Label profile_label {
+                    hexpand: true;
+                    halign: fill;
+                    xalign: 0;
+                    label: 'I\'m scared of drawing so I\'m programming instead!';
+
+                    styles [
+                      'profile-name'
+                    ]
+                  }
+                }
+
+                Gtk.Image {
+                  icon-name: 'pan-down-symbolic';
+                }
+              }
+            }
+          }
+        }
+      }
+
+      [start]
+      Adw.SplitButton {
+        icon-name: 'play-large-symbolic';
+
+        styles [
+          'green'
+        ]
+      }
+    }
+
+    Adw.ToastOverlay {
+      Adw.Clamp {
+        maximum-size: 300;
+
+        Adw.StatusPage {
+          vexpand: true;
+          title: _('Work in Progress');
+          description: _('Add-on list section is under construction');
+        }
+      }
+    }
+
+    Gtk.Box {}
+  }
+}
+
